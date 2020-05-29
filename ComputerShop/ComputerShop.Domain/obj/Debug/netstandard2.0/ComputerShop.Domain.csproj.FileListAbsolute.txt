@@ -1,0 +1,9 @@
+C:\Users\Shypiemy\source\repos\ComputerShop\ComputerShop.Domain\bin\Debug\netstandard2.0\ComputerShop.Domain.deps.json
+C:\Users\Shypiemy\source\repos\ComputerShop\ComputerShop.Domain\bin\Debug\netstandard2.0\ComputerShop.Domain.dll
+C:\Users\Shypiemy\source\repos\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.csprojAssemblyReference.cache
+C:\Users\Shypiemy\source\repos\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.AssemblyInfoInputs.cache
+C:\Users\Shypiemy\source\repos\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.AssemblyInfo.cs
+C:\Users\Shypiemy\source\repos\ComputerShop\ComputerShop.Domain\bin\Debug\netstandard2.0\ComputerShop.Domain.pdb
+C:\Users\Shypiemy\source\repos\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Shypiemy\source\repos\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.dll
+C:\Users\Shypiemy\source\repos\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.pdb
