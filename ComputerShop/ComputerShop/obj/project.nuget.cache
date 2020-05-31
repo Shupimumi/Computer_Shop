@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EMrUzABsu7w/7A788qc9NY80nihs64r1PQiyG9qEvtxEXeMiNVJEMWo+sefvo647CLhUZwbm+0FgDoHm2xu/lw==",
+  "dgSpecHash": "2S9VfkOQDs3+AgIj8yGEaVz57YuvP6uqw3ee0H9OCiw9DfDQMFvm2kNwJozI/V5HdBWkkqVh6JfNZTVg5OC/ww==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Shypiemy\\source\\repos\\ComputerShop\\ComputerShop\\ComputerShop.csproj",
+  "projectFilePath": "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop\\ComputerShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shypiemy\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Shypiemy\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

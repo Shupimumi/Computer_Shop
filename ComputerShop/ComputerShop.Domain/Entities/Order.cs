@@ -6,8 +6,9 @@ namespace ComputerShop.Domain.Entities
 {
 	public class Order : EntityBase
 	{
-		public Guid CustomerID { get; set; }
-		public Guid SellerID { get; set; }
-		public Guid ReceiptID { get; set; }
+		public Receipt Receipt { get; set; }
+		public Customer	Customer { get; set; }
+		public Seller Seller { get; set; }
+
 	}
 }

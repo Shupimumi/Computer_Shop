@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Shypiemy\\source\\repos\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj": {}
+    "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Shypiemy\\source\\repos\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj": {
+    "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Shypiemy\\source\\repos\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj",
         "projectName": "ComputerShop.Domain",
-        "projectPath": "C:\\Users\\Shypiemy\\source\\repos\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj",
+        "projectPath": "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj",
         "packagesPath": "C:\\Users\\Shypiemy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Shypiemy\\source\\repos\\ComputerShop\\ComputerShop.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
