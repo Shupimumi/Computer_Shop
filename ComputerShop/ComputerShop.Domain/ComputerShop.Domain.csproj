@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200603130006_NewDatabase.cs" />
+    <Compile Remove="Migrations\20200603130006_NewDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20200603130034_NewDatabase.cs" />
+    <Compile Remove="Migrations\20200603130034_NewDatabase.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
