@@ -46,6 +46,7 @@ namespace ComputerShop.Controllers
         // GET: Kits/Create
         public IActionResult Create()
         {
+            ViewData["Name"] = new SelectList(_context.Categories, "Name", "Name");
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
             return View();
         }

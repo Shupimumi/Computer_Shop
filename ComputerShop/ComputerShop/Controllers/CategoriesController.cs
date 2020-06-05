@@ -97,7 +97,7 @@ namespace ComputerShop.Controllers
             {
                 try
                 {
-                    //_context.Database.ExecuteSqlInterpolated($"dbo.CategoryUpdate {category.Name}");
+                    _context.Database.ExecuteSqlInterpolated($"dbo.CategoryUpdate {category.Id},{category.Name}");
                     _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
@@ -140,7 +140,7 @@ namespace ComputerShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var category = _context.Categories.FromSqlRaw($"dbo.CategoryDelete '{id}'").ToList().FirstOrDefault();
+            var category = _context.Categories.FromSqlRaw($"dbo.CategoryDelete '{id}'");
             return RedirectToAction(nameof(Index));
         }
 
