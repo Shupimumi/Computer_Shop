@@ -137,9 +137,14 @@ namespace ComputerShop.Domain.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Invoices");
                 });
@@ -159,6 +164,9 @@ namespace ComputerShop.Domain.Migrations
                     b.Property<string>("ImageLink")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("Money");
 
@@ -175,27 +183,18 @@ namespace ComputerShop.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("InvoiceId")
+                    b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("InvoiceId")
-                        .IsUnique();
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Orders");
                 });
@@ -214,9 +213,6 @@ namespace ComputerShop.Domain.Migrations
 
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -250,6 +246,10 @@ namespace ComputerShop.Domain.Migrations
                     b.HasOne("ComputerShop.Domain.Entities.Account", null)
                         .WithMany("Invoices")
                         .HasForeignKey("AccountId");
+
+                    b.HasOne("ComputerShop.Domain.Entities.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("ComputerShop.Domain.Entities.Kit", b =>
@@ -263,15 +263,9 @@ namespace ComputerShop.Domain.Migrations
 
             modelBuilder.Entity("ComputerShop.Domain.Entities.Order", b =>
                 {
-                    b.HasOne("ComputerShop.Domain.Entities.Account", "Account")
+                    b.HasOne("ComputerShop.Domain.Entities.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ComputerShop.Domain.Entities.Invoice", "Invoice")
-                        .WithOne("Order")
-                        .HasForeignKey("ComputerShop.Domain.Entities.Order", "InvoiceId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

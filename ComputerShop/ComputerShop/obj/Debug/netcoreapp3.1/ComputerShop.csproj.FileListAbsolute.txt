@@ -281,3 +281,8 @@ C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\OrderItems\Details.cshtml.g.cs
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\OrderItems\Edit.cshtml.g.cs
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\OrderItems\Index.cshtml.g.cs
+C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\CustomerKits\Create.cshtml.g.cs
+C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\CustomerKits\Delete.cshtml.g.cs
+C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\CustomerKits\Details.cshtml.g.cs
+C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\CustomerKits\Edit.cshtml.g.cs
+C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\CustomerKits\Index.cshtml.g.cs

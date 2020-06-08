@@ -10,6 +10,7 @@ namespace ComputerShop.Domain.Entities
 		public List<Description> Descriptions { get; set; }
 		public Guid CategoryId { get; set; }
 		public Category Category { get; set; }
+		public string Name { get; set; }
 		[Column(TypeName = "Money")]
 		public decimal Price { get; set; }
 		public string ImageLink { get; set; }

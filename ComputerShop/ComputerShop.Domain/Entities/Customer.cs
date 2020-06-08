@@ -9,7 +9,7 @@ namespace ComputerShop.Domain.Entities
 	{
 
 		public Account Account { get; set; }
-		//public List<Order> Orders { get; set; }
+		public List<Order> Orders { get; set; }
 		public string Surname { get; set; }
 		public string Name { get; set; }
 		public string Phone { get; set; }

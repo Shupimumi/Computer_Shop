@@ -65,8 +65,8 @@ namespace ComputerShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Id", order.AccountId);
-            ViewData["InvoiceId"] = new SelectList(_context.Invoices, "Id", "Id", order.InvoiceId);
+            //ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Id", order.AccountId);
+            //ViewData["InvoiceId"] = new SelectList(_context.Invoices, "Id", "Id", order.InvoiceId);
             return View(order);
         }
 
@@ -83,8 +83,8 @@ namespace ComputerShop.Controllers
             {
                 return NotFound();
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Id", order.AccountId);
-            ViewData["InvoiceId"] = new SelectList(_context.Invoices, "Id", "Id", order.InvoiceId);
+            //ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Id", order.AccountId);
+            //ViewData["InvoiceId"] = new SelectList(_context.Invoices, "Id", "Id", order.InvoiceId);
             return View(order);
         }
 
@@ -120,8 +120,8 @@ namespace ComputerShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Id", order.AccountId);
-            ViewData["InvoiceId"] = new SelectList(_context.Invoices, "Id", "Id", order.InvoiceId);
+            //ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Id", order.AccountId);
+           // ViewData["InvoiceId"] = new SelectList(_context.Invoices, "Id", "Id", order.InvoiceId);
             return View(order);
         }
 
@@ -134,8 +134,8 @@ namespace ComputerShop.Controllers
             }
 
             var order = await _context.Orders
-                .Include(o => o.Account)
-                .Include(o => o.Invoice)
+                //.Include(o => o.Account)
+               // .Include(o => o.Invoice)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {

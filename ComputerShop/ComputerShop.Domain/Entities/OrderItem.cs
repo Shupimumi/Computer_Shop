@@ -10,7 +10,7 @@ namespace ComputerShop.Domain.Entities
 		public Guid KitId { get; set; }
 		public Guid OrderId { get; set; }
 		public Order Order { get; set; }
-		public int Quantity { get; set; }
+		//public int Quantity { get; set; }
 		public DateTime CreatedDate { get; set; }
 	}
 }

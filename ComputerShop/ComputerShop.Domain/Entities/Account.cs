@@ -11,7 +11,7 @@ namespace ComputerShop.Domain.Entities
 		public List<Invoice> Invoices { get; set; }
 		public Guid CustomerId { get; set; }
 		public Customer Customer { get; set; }
-		public List<Order> Orders { get; set; }
+		//public List<Order> Orders { get; set; }
 		[Column(TypeName = "Money")]
 		public double Amount { get; set; }
 		public string CardNumber { get; set; }
