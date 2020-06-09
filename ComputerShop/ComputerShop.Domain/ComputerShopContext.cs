@@ -1,4 +1,5 @@
 ﻿using ComputerShop.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace ComputerShop.Domain
 {
-	public class ComputerShopContext : DbContext
+	public class ComputerShopContext : IdentityDbContext
 	{
 		public ComputerShopContext(DbContextOptions<ComputerShopContext> options) : base(options)
 		{		

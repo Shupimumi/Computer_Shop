@@ -1,34 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj": {}
+    "C:\\Users\\Egor\\Documents\\source\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj": {
+    "C:\\Users\\Egor\\Documents\\source\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Egor\\Documents\\source\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj",
         "projectName": "ComputerShop.Domain",
-        "projectPath": "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj",
-        "packagesPath": "C:\\Users\\Shypiemy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Shypiemy\\source\\repos\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Egor\\Documents\\source\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\ComputerShop.Domain.csproj",
+        "packagesPath": "C:\\Users\\Egor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Egor\\Documents\\source\\Computer_Shop\\ComputerShop\\ComputerShop.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Shypiemy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Egor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
+          "netcoreapp3.1": {
             "projectReferences": {}
           }
         },
@@ -39,27 +37,37 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
+        "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.5, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.5, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.4, )"
-            },
-            "NETStandard.Library": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[3.1.5, )"
             }
           },
           "imports": [
@@ -72,6 +80,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }

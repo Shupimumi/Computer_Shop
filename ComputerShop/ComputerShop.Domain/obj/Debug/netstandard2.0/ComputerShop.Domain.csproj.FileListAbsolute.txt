@@ -16,3 +16,11 @@ C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop.Domain\bi
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.dll
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.pdb
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.csprojAssemblyReference.cache
+C:\Users\Egor\Documents\source\Computer_Shop\ComputerShop\ComputerShop.Domain\bin\Debug\netstandard2.0\ComputerShop.Domain.deps.json
+C:\Users\Egor\Documents\source\Computer_Shop\ComputerShop\ComputerShop.Domain\bin\Debug\netstandard2.0\ComputerShop.Domain.dll
+C:\Users\Egor\Documents\source\Computer_Shop\ComputerShop\ComputerShop.Domain\bin\Debug\netstandard2.0\ComputerShop.Domain.pdb
+C:\Users\Egor\Documents\source\Computer_Shop\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.csprojAssemblyReference.cache
+C:\Users\Egor\Documents\source\Computer_Shop\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.AssemblyInfoInputs.cache
+C:\Users\Egor\Documents\source\Computer_Shop\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.AssemblyInfo.cs
+C:\Users\Egor\Documents\source\Computer_Shop\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.dll
+C:\Users\Egor\Documents\source\Computer_Shop\ComputerShop\ComputerShop.Domain\obj\Debug\netstandard2.0\ComputerShop.Domain.pdb
