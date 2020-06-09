@@ -234,8 +234,6 @@ C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\bin\Debug
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\ComputerShop.csproj.CoreCompileInputs.cache
-C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\ComputerShop.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Create.cshtml.g.cs
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Delete.cshtml.g.cs
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Details.cshtml.g.cs
@@ -286,3 +284,8 @@ C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\CustomerKits\Details.cshtml.g.cs
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\CustomerKits\Edit.cshtml.g.cs
 C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\Razor\Views\CustomerKits\Index.cshtml.g.cs
+C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Configuration.dll
+C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Console.dll
+C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\ComputerShop.csproj.CoreCompileInputs.cache
+C:\Users\Shypiemy\source\repos\Computer_Shop\ComputerShop\ComputerShop\obj\Debug\netcoreapp3.1\ComputerShop.MvcApplicationPartsAssemblyInfo.cache

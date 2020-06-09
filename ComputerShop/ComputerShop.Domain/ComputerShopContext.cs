@@ -1,5 +1,6 @@
 ﻿using ComputerShop.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,8 +9,15 @@ namespace ComputerShop.Domain
 {
 	public class ComputerShopContext : DbContext
 	{
+		public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
 		public ComputerShopContext(DbContextOptions<ComputerShopContext> options) : base(options)
 		{		
+		}
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			optionsBuilder.UseLoggerFactory(loggerFactory)  //tie-up DbContext with LoggerFactory object
+				.EnableSensitiveDataLogging()
+				.UseSqlServer(@"Server=DESKTOP-ESKKMMP;Database=Shop;Trusted_Connection=True;");
 		}
 		public DbSet<Customer> Customers { get; set; }
 		public DbSet<Kit> Kits { get; set; }
