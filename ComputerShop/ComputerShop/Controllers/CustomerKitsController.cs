@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ComputerShop.Domain;
 using ComputerShop.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ComputerShop.Controllers
 {
+    [Authorize(Roles = "NormalUser")]
     public class CustomerKitsController : Controller
     {
         private readonly ComputerShopContext _context;

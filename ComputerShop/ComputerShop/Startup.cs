@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ComputerShop.Domain;
+using ComputerShop.Domain.Migrations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,10 +28,10 @@ namespace ComputerShop
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
-			services.AddDbContext<ComputerShopContext>(opt =>
-			   opt.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
-			services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-				.AddEntityFrameworkStores<ComputerShopContext>();
+			//services.AddDbContext<ComputerShopContext>(opt =>
+			//   opt.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
+			//services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+			//	.AddEntityFrameworkStores<ComputerShopContext>();
 			services.AddControllersWithViews();
 			services.AddRazorPages();
 		}
@@ -65,6 +66,8 @@ namespace ComputerShop
 					pattern: "{controller=Home}/{action=Index}/{id?}");
 				endpoints.MapRazorPages();
 			});
+
+			IdentityDataInitializer.SeedData(userManager, roleManager);
 		}
 	}
 }
