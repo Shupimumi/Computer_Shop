@@ -1,0 +1,145 @@
+﻿@model ComputerShop.Models.CustomerOrdersResponse
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Active order</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveOrder.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveOrder.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveOrder.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayName("Total price")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActiveOrder.Customer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActiveOrder.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActiveOrder.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ActiveOrderTotalPrice)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@Model.ActiveOrder.Id">Edit</a> |*@
+                @*<a asp-action="Details" asp-route-id="@Model.ActiveOrder.Id">Details</a> |*@
+                @*<a asp-action="Delete" asp-route-id="@Model.ActiveOrder.Id">Delete</a>*@
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+
+<h5>Order items</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Category")
+            </th>
+            <th>
+                @Html.DisplayName("Kit")
+            </th>
+            <th>
+                @Html.DisplayName("Price")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderItem in Model.ActiveOrder.OrderItems)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => orderItem.Kit.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => orderItem.Kit.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => orderItem.Kit.Price)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Edit</a> |*@
+                <a asp-action="Details" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Details</a> |
+                <a asp-action="Delete" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<h1>History</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveOrder.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveOrder.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveOrder.CreatedDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var historyItem in Model.History)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ActiveOrder.Customer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ActiveOrder.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ActiveOrder.CreatedDate)
+                </td>
+                <td>
+                    @Html.Display("34", "Total price")
+                </td>
+                @*<td>
+                    <a asp-action="Edit" asp-route-id="@Model.ActiveOrder.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@Model.ActiveOrder.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@Model.ActiveOrder.Id">Delete</a>
+                </td>*@
+            </tr>
+
+
+            @foreach (var orderItem in Model.ActiveOrder.OrderItems)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => orderItem.Kit.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => orderItem.Kit.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => orderItem.Kit.Price)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

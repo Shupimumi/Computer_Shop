@@ -4,14 +4,16 @@ using ComputerShop.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ComputerShop.Domain.Migrations
 {
     [DbContext(typeof(ComputerShopContext))]
-    partial class ComputerShopContextModelSnapshot : ModelSnapshot
+    [Migration("20200610063709_IdentityCustomerRelation")]
+    partial class IdentityCustomerRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

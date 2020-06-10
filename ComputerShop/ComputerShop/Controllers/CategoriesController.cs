@@ -58,8 +58,10 @@ namespace ComputerShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Database.ExecuteSqlInterpolated($"dbo.CategoryInsert {category.Name}");
-                //await _context.SaveChangesAsync();
+                //_context.Database.ExecuteSqlInterpolated($"dbo.CategoryInsert {category.Name}");
+                category.CreatedDate = DateTime.UtcNow;
+                _context.Categories.Add(category);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(category);

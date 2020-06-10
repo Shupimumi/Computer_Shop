@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ComputerShop.Domain;
 using ComputerShop.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace ComputerShop.Controllers
 {
+    [Authorize]
     public class OrderItemsController : Controller
     {
         private readonly ComputerShopContext _context;
@@ -153,6 +156,12 @@ namespace ComputerShop.Controllers
             var orderItem = await _context.OrderItems.FindAsync(id);
             _context.OrderItems.Remove(orderItem);
             await _context.SaveChangesAsync();
+
+            if (User.IsInRole("Customer"))
+            {
+                return RedirectToAction("Index", "CustomerOrders");
+            }
+
             return RedirectToAction(nameof(Index));
         }
 

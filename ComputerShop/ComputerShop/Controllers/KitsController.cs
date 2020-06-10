@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ComputerShop.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Admin")]
     public class KitsController : Controller
     {
         private readonly ComputerShopContext _context;
@@ -19,13 +19,14 @@ namespace ComputerShop.Controllers
         public KitsController(ComputerShopContext context)
         {
             _context = context;
+
         }
 
         // GET: Kits
         public async Task<IActionResult> Index()
         {
-            var allKits = _context.Kits.FromSqlRaw("dbo.KitSelectAll").ToList();
-            return View(allKits);
+            var computerShopContext = _context.Kits.Include(k => k.Category);
+            return View(await computerShopContext.ToListAsync());
         }
 
         // GET: Kits/Details/5
@@ -36,7 +37,9 @@ namespace ComputerShop.Controllers
                 return NotFound();
             }
 
-            var kit = _context.Kits.FromSqlRaw($"dbo.KitSelect '{id}'").ToList().FirstOrDefault();
+            var kit = await _context.Kits
+                .Include(k => k.Category)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (kit == null)
             {
                 return NotFound();
@@ -48,8 +51,7 @@ namespace ComputerShop.Controllers
         // GET: Kits/Create
         public IActionResult Create()
         {
-            ViewData["Name"] = new SelectList(_context.Categories, "Name", "Name");
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -58,11 +60,12 @@ namespace ComputerShop.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,Price,ImageLink,CreatedDate,Id")] Kit kit)
+        public async Task<IActionResult> Create([Bind("CategoryId,Name,Price,ImageLink,CreatedDate,Id")] Kit kit)
         {
             if (ModelState.IsValid)
             {
                 kit.Id = Guid.NewGuid();
+                kit.CreatedDate = DateTime.UtcNow;
                 _context.Add(kit);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -93,7 +96,7 @@ namespace ComputerShop.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("CategoryId,Price,ImageLink,CreatedDate,Id")] Kit kit)
+        public async Task<IActionResult> Edit(Guid id, [Bind("CategoryId,Name,Price,ImageLink,CreatedDate,Id")] Kit kit)
         {
             if (id != kit.Id)
             {

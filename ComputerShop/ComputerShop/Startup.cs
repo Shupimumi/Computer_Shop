@@ -28,18 +28,18 @@ namespace ComputerShop
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
-			//services.AddDbContext<ComputerShopContext>(opt =>
-			//   opt.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
-			//services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-			//	.AddEntityFrameworkStores<ComputerShopContext>();
-			services.AddControllersWithViews();
+            //services.AddDbContext<ComputerShopContext>(opt =>
+            //   opt.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
+            //services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+            //    .AddEntityFrameworkStores<ComputerShopContext>();
+            services.AddControllersWithViews();
 			services.AddRazorPages();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
 			UserManager<IdentityUser> userManager,
-			RoleManager<IdentityRole> roleManager)
+			RoleManager<IdentityRole> roleManager, ComputerShopContext computerShopContext)
 		{
 			if (env.IsDevelopment())
 			{
@@ -67,7 +67,7 @@ namespace ComputerShop
 				endpoints.MapRazorPages();
 			});
 
-			IdentityDataInitializer.SeedData(userManager, roleManager);
+			IdentityDataInitializer.SeedData(userManager, roleManager, computerShopContext);
 		}
 	}
 }
