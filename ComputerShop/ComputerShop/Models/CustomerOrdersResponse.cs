@@ -8,9 +8,13 @@ namespace ComputerShop.Models
 {
     public class CustomerOrdersResponse
     {
-        public Order ActiveOrder { get; set; }
-        public decimal ActiveOrderTotalPrice { get; set; }
-        public List<Order> History { get; set; }
+        public OrderDisplay ActiveOrder { get; set; }
+        public List<OrderDisplay> History { get; set; }
+    }
+
+    public class OrderDisplay : Order
+    {
+        public Decimal TotalPrice { get; set; }
     }
 
 

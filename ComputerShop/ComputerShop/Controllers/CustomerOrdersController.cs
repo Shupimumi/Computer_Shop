@@ -9,6 +9,8 @@ using ComputerShop.Domain;
 using ComputerShop.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using ComputerShop.Models;
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace ComputerShop.Controllers
 {
@@ -23,7 +25,7 @@ namespace ComputerShop.Controllers
 
         private Customer GetCurrentCustomer()
         {
-            var currentCustomer = _context.Customers.FirstOrDefault(c => c.Email == this.User.Identity.Name);
+            var currentCustomer = _context.Customers.Include(c => c.Account).FirstOrDefault(c => c.Email == this.User.Identity.Name);
             if (currentCustomer == null)
             {
                 throw new Exception($"No customer with {this.User.Identity.Name}");
@@ -43,15 +45,70 @@ namespace ComputerShop.Controllers
                 .ThenInclude(k => k.Category)
                 .Where(o => o.CustomerId == currentCustomer.Id);
 
-            var activeOrder = customerOrders.FirstOrDefault(c => c.Status == OrderStatus.Active);
+            var activeOrder = customerOrders.Where(c => c.Status == OrderStatus.Active).Select(o => new OrderDisplay()
+            {
+                Id = o.Id,
+                Customer = o.Customer,
+                CustomerId = o.CustomerId,
+                OrderItems = o.OrderItems,
+                Status = o.Status,
+                CreatedDate = o.CreatedDate,
+                TotalPrice = o.OrderItems.Sum(o => o.Kit.Price)
+            }).FirstOrDefault();
+
+            var historyOrders = customerOrders.Where(c => c.Status != OrderStatus.Active).ToList().Select(o => new OrderDisplay()
+            {
+                Id = o.Id,
+                Customer = o.Customer,
+                CustomerId = o.CustomerId,
+                OrderItems = o.OrderItems,
+                Status = o.Status,
+                CreatedDate = o.CreatedDate,
+                TotalPrice = o.OrderItems.Sum(i => i.Kit.Price)
+            }).ToList();
+
             var response = new CustomerOrdersResponse()
             {
                 ActiveOrder = activeOrder,
-                ActiveOrderTotalPrice = activeOrder.OrderItems.Sum(o => o.Kit.Price),
-                History = customerOrders.Where(c => c.Status != OrderStatus.Active).ToList()
+                History = historyOrders
             };
 
             return View(response);
+        }
+
+        public async Task<IActionResult> Pay(Guid id)
+        {
+            var currentCustomer = GetCurrentCustomer();
+
+            var customerActiveOrder = _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.OrderItems)
+                .ThenInclude(o => o.Kit)
+                .Where(o => o.CustomerId == currentCustomer.Id)
+                .FirstOrDefault(o => o.Status == OrderStatus.Active);
+
+            var orderPrice = customerActiveOrder.OrderItems.Sum(o => o.Kit.Price);
+            //check account money
+            var customerAbleToPay = (decimal)currentCustomer.Account.Amount > orderPrice;
+            if (!customerAbleToPay)
+            {
+                throw new Exception("Not enough money");
+            }
+
+            var invoice = new Invoice()
+            {
+                Id = Guid.NewGuid(),
+                CreatedDate = DateTime.UtcNow,
+                Order = customerActiveOrder,
+                Amount = orderPrice
+            };
+            currentCustomer.Account.Amount = (double)((decimal)currentCustomer.Account.Amount - orderPrice);
+
+            _context.Invoices.Add(invoice);
+            customerActiveOrder.Status = OrderStatus.Paid;
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // GET: CustomerOrders/Details/5

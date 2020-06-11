@@ -5,106 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Active order</h1>
+@if (Model.ActiveOrder != null)
+{
+    <h1>Active order</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ActiveOrder.Customer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActiveOrder.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActiveOrder.CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayName("Total price")
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => Model.ActiveOrder.Customer.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.ActiveOrder.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.ActiveOrder.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.ActiveOrderTotalPrice)
-            </td>
-            <td>
-                @*<a asp-action="Edit" asp-route-id="@Model.ActiveOrder.Id">Edit</a> |*@
-                @*<a asp-action="Details" asp-route-id="@Model.ActiveOrder.Id">Details</a> |*@
-                @*<a asp-action="Delete" asp-route-id="@Model.ActiveOrder.Id">Delete</a>*@
-            </td>
-        </tr>
-        
-    </tbody>
-</table>
-
-<h5>Order items</h5>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Category")
-            </th>
-            <th>
-                @Html.DisplayName("Kit")
-            </th>
-            <th>
-                @Html.DisplayName("Price")
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var orderItem in Model.ActiveOrder.OrderItems)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(m => orderItem.Kit.Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(m => orderItem.Kit.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(m => orderItem.Kit.Price)
-            </td>
-            <td>
-                @*<a asp-action="Edit" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Edit</a> |*@
-                <a asp-action="Details" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Details</a> |
-                <a asp-action="Delete" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Delete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-
-<h1>History</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ActiveOrder.Customer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActiveOrder.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActiveOrder.CreatedDate)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var historyItem in Model.History)
-        {
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveOrder.Customer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveOrder.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveOrder.CreatedDate)
+                </th>
+                <th>
+                    @Html.DisplayName("Total price")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => Model.ActiveOrder.Customer.Name)
@@ -116,16 +38,35 @@
                     @Html.DisplayFor(modelItem => Model.ActiveOrder.CreatedDate)
                 </td>
                 <td>
-                    @Html.Display("34", "Total price")
+                    @Html.DisplayFor(modelItem => Model.ActiveOrder.TotalPrice)
                 </td>
-                @*<td>
-                    <a asp-action="Edit" asp-route-id="@Model.ActiveOrder.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@Model.ActiveOrder.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@Model.ActiveOrder.Id">Delete</a>
-                </td>*@
+                <td>
+                    <a asp-action="Pay" asp-route-id="@Model.ActiveOrder.Id">Pay</a>
+                    @*<a asp-action="Details" asp-route-id="@Model.ActiveOrder.Id">Details</a> |*@
+                    @*<a asp-action="Delete" asp-route-id="@Model.ActiveOrder.Id">Delete</a>*@
+                </td>
             </tr>
 
+        </tbody>
+    </table>
 
+
+    <h5>Order items</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Category")
+                </th>
+                <th>
+                    @Html.DisplayName("Kit")
+                </th>
+                <th>
+                    @Html.DisplayName("Price")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
             @foreach (var orderItem in Model.ActiveOrder.OrderItems)
             {
                 <tr>
@@ -138,8 +79,161 @@
                     <td>
                         @Html.DisplayFor(m => orderItem.Kit.Price)
                     </td>
+                    <td>
+                        @*<a asp-action="Edit" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Edit</a> |*@
+                        <a asp-action="Details" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Details</a> |
+                        <a asp-action="Delete" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Delete</a>
+                    </td>
                 </tr>
             }
+        </tbody>
+    </table>
+}
+
+
+<div style="background-color:cornsilk">
+    @if (Model.History != null)
+    {
+
+        <h4>History</h4>
+
+        foreach (var historyOrder in Model.History)
+        {
+            <h6>Order</h6>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => historyOrder.Customer.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => historyOrder.Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => historyOrder.CreatedDate)
+                        </th>
+                        <th>
+                            @Html.DisplayName("Total price")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => historyOrder.Customer.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => historyOrder.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => historyOrder.CreatedDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => historyOrder.TotalPrice)
+                        </td>
+                        @*<td>
+                                <a asp-action="Pay" asp-route-id="@Model.ActiveOrder.Id">Pay</a>
+                                <a asp-action="Details" asp-route-id="@Model.ActiveOrder.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@Model.ActiveOrder.Id">Delete</a>
+                            </td>*@
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+            <h6>Order items</h6>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Category")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Kit")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Price")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var orderItem in historyOrder.OrderItems)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => orderItem.Kit.Category.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => orderItem.Kit.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => orderItem.Kit.Price)
+                            </td>
+                            <td>
+                                @*<a asp-action="Edit" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Edit</a> |*@
+                                @*<a asp-action="Details" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Details</a> |
+                                    <a asp-action="Delete" asp-controller="OrderItems" asp-route-id="@orderItem.Id">Delete</a>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         }
-    </tbody>
-</table>
+    }
+</div>
+
+
+
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveOrder.Customer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveOrder.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveOrder.CreatedDate)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var historyItem in Model.History)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => historyItem.Customer.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => historyItem.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => historyItem.CreatedDate)
+                    </td>
+                    <td>
+                            <a asp-action="Edit" asp-route-id="@Model.ActiveOrder.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@Model.ActiveOrder.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@Model.ActiveOrder.Id">Delete</a>
+                        </td>
+                </tr>
+
+
+                @foreach (var orderItem in historyItem.OrderItems)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => orderItem.Kit.Category.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => orderItem.Kit.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => orderItem.Kit.Price)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>*@

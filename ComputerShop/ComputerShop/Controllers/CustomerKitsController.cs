@@ -62,7 +62,8 @@ namespace ComputerShop.Controllers
                 {
                     CustomerId = currentCustomer.Id,
                     OrderItems = new List<OrderItem>(),
-                    Status = OrderStatus.Active
+                    Status = OrderStatus.Active,
+                    CreatedDate = DateTime.UtcNow
                 };
 			}
 
