@@ -24,7 +24,7 @@ namespace ComputerShop.Controllers
 
         private Customer GetCurrentCustomer()
         {
-            var currentCustomer = _context.Customers.FirstOrDefault(c => c.Email == this.User.Identity.Name);
+            var currentCustomer = _context.Customers.Include(c => c.Account).FirstOrDefault(c => c.Email == this.User.Identity.Name);
             if (currentCustomer == null)
             {
                 throw new Exception($"No customer with {this.User.Identity.Name}");
@@ -38,6 +38,7 @@ namespace ComputerShop.Controllers
         {
             //Doto storred
             var computerShopContext = _context.Kits.Include(k => k.Category);
+            ViewBag.Ammount = GetCurrentCustomer()?.Account?.Amount;
             return View(await computerShopContext.ToListAsync());
         }
 
@@ -75,12 +76,12 @@ namespace ComputerShop.Controllers
 
             currentOrder.OrderItems.Add(new OrderItem()
             {
-                KitId = selectedKit.Id
+                KitId = selectedKit.Id,
+                CreatedDate = DateTime.UtcNow
             });
 
             _context.Orders.Attach(currentOrder);
             var result = _context.SaveChanges();
-
             return RedirectToAction("Index", "CustomerOrders");
         }
 

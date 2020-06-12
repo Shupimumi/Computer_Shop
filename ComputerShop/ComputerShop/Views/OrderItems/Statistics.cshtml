@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ComputerShop.Domain.Entities.OrderItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Orders statistic</h1>
+
+@*<form asp-controller="OrderItems" asp-action="Statistics">
+        <p>
+            <label type="text" name="Category"></label>
+            <select asp-items="ViewBag.CategoryId" />
+        </p>
+    </form>*@
+
+<form asp-controller="OrderItems" asp-action="Statistics" method="get">
+    <label>Date From</label>
+    <input name="dateFrom" type="date" />
+    <label>Date To</label>
+    <input name="dateTo" type="date" />
+    <p>
+        @Html.DropDownList("categoryId", (IEnumerable
+        <SelectListItem>)(ViewData["Categories"]), "Any")
+
+        <input type="submit" value="Filter" />
+    </p>
+
+</form>
+
+@*<div class="form-group">
+        <label class="control-label">Category</label>
+        <select class="form-control" asp-items="ViewBag.CategoryId"></select>
+    </div>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Kit.Category)
+            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Kit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kit.Price)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kit.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kit.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kit.Price)
+            </td>
+            @*<td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>*@
+        </tr>
+        }
+
+    </tbody>
+</table>
+@if (Model.Any())
+{
+    <h4>Total price</h4>
+    <span>
+        @Model.Sum(i => i.Kit.Price)
+    </span>
+}

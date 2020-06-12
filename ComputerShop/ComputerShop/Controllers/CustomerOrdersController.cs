@@ -72,7 +72,7 @@ namespace ComputerShop.Controllers
                 ActiveOrder = activeOrder,
                 History = historyOrders
             };
-
+            ViewBag.Ammount = GetCurrentCustomer()?.Account?.Amount;
             return View(response);
         }
 
@@ -107,7 +107,6 @@ namespace ComputerShop.Controllers
             _context.Invoices.Add(invoice);
             customerActiveOrder.Status = OrderStatus.Paid;
             _context.SaveChanges();
-
             return RedirectToAction("Index");
         }
 

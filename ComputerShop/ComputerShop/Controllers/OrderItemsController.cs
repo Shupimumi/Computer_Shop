@@ -29,6 +29,30 @@ namespace ComputerShop.Controllers
             return View(allOrderItems);
         }
 
+        // GET: OrderItems
+        public async Task<IActionResult> Statistics(Guid? categoryId, DateTime? dateFrom, DateTime? dateTo)
+        {
+            var allOrderItems = _context.OrderItems
+                .Include(o => o.Kit)
+                .ThenInclude(o => o.Category).ToList();
+
+            if (categoryId.HasValue)
+            {
+                allOrderItems = allOrderItems.Where(o => o.Kit.CategoryId == categoryId.Value).ToList();
+            }
+            if (dateFrom.HasValue)
+            {
+                allOrderItems = allOrderItems.Where(o => o.CreatedDate >= dateFrom).ToList();
+            }
+            if (dateTo.HasValue)
+            {
+                allOrderItems = allOrderItems.Where(o => o.CreatedDate >= dateTo).ToList();
+            }
+
+            ViewData["Categories"] = new SelectList(_context.Categories, "Id", "Name");
+            return View(allOrderItems);
+        }
+
         // GET: OrderItems/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
