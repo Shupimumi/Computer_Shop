@@ -44,7 +44,7 @@ namespace ComputerShop.Domain.Migrations
                         Account = new Account()
                         {
                             Id = Guid.NewGuid(),
-                            Amount = 1000,
+                            Amount = 1000000,
                             CreatedDate = DateTime.UtcNow,
                         }, 
                         CreatedDate = DateTime.UtcNow,
@@ -162,7 +162,10 @@ namespace ComputerShop.Domain.Migrations
         private static void SeedKits(ComputerShopContext computerShopContext)
         {
             var memoryCategory = computerShopContext.Categories.FirstOrDefault(c => c.Name == "Memory");
-            if(!computerShopContext.Kits.Any(x => x.Name == "SSD Kingston 128 GB"))
+            var videocardCategory = computerShopContext.Categories.FirstOrDefault(c => c.Name == "Videocard");
+
+            //seed memory
+            if (!computerShopContext.Kits.Any(x => x.Name == "SSD Kingston 128 GB"))
             {
                 var kit = new Kit()
                 {
@@ -187,6 +190,23 @@ namespace ComputerShop.Domain.Migrations
                 };
                 computerShopContext.Kits.Add(kit);
             }
+
+
+            //seed videocards
+            if (!computerShopContext.Kits.Any(x => x.Name == "Nvidia GT 220"))
+            {
+                var kit = new Kit()
+                {
+                    Id = Guid.NewGuid(),
+                    Category = videocardCategory,
+                    Name = "Nvidia GT 220",
+                    Price = 400,
+                    CreatedDate = DateTime.UtcNow
+                };
+                computerShopContext.Kits.Add(kit);
+            }
+
+
             computerShopContext.SaveChanges();
         }
     }

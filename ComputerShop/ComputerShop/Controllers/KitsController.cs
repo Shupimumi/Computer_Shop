@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ComputerShop.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class KitsController : Controller
     {
         private readonly ComputerShopContext _context;

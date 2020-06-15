@@ -10,6 +10,7 @@ using ComputerShop.Domain.Entities;
 
 namespace ComputerShop.Controllers
 {
+  //  [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private readonly ComputerShopContext _context;
