@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Authorization;
 using ComputerShop.Models;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using ComputerShop.Domain.Helper;
 
 namespace ComputerShop.Controllers
 {
@@ -18,9 +21,11 @@ namespace ComputerShop.Controllers
     public class CustomerOrdersController : Controller
     {
         private readonly ComputerShopContext _context;
-        public CustomerOrdersController(ComputerShopContext context)
+        public IConfiguration Configuration { get; }
+        public CustomerOrdersController(ComputerShopContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
 
         private Customer GetCurrentCustomer()
@@ -34,10 +39,33 @@ namespace ComputerShop.Controllers
             return currentCustomer;
         }
 
+        
+
         // GET: CustomerOrders
         public async Task<IActionResult> Index()
         {
             var currentCustomer = GetCurrentCustomer();
+
+            var sqlQuery = @"SELECT *
+                              FROM OrderItems
+                              Inner Join Orders on OrderItems.OrderId=Orders.Id
+                              Inner Join Kits on OrderItems.KitId=Kits.Id
+                              Inner Join Categories on Categories.Id=Kits.CategoryId";
+
+            var sqlQueryWithParam = @"SELECT *
+                              FROM OrderItems
+                              Inner Join Orders on OrderItems.OrderId=Orders.Id
+                              Inner Join Kits on OrderItems.KitId=Kits.Id
+                              Inner Join Categories on Categories.Id=Kits.CategoryId Where Kits.CategoryId = @CategoryId";
+
+            var result = SQLHelper.ExcecuteSQL(Configuration.GetConnectionString("SQLConnection"),
+                sqlQuery);
+
+
+            var resultWithParams = SQLHelper.ExcecuteSQL(Configuration.GetConnectionString("SQLConnection"),
+                sqlQueryWithParam,
+                new KeyValueSQlParameter("@CategoryId", "F473D3E8-71E6-4A4B-E484-08D80D0F5764"));
+
 
             var customerOrders = _context.Orders.Include(o => o.Customer)
                 .Include(o => o.OrderItems)

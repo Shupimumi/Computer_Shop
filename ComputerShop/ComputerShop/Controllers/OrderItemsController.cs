@@ -9,6 +9,8 @@ using ComputerShop.Domain;
 using ComputerShop.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using ComputerShop.Domain.Helper;
+using Microsoft.Extensions.Configuration;
 
 namespace ComputerShop.Controllers
 {
@@ -16,10 +18,11 @@ namespace ComputerShop.Controllers
     public class OrderItemsController : Controller
     {
         private readonly ComputerShopContext _context;
-
-        public OrderItemsController(ComputerShopContext context)
+        public IConfiguration Configuration { get; }
+        public OrderItemsController(ComputerShopContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
 
         // GET: OrderItems
@@ -32,6 +35,18 @@ namespace ComputerShop.Controllers
         // GET: OrderItems
         public async Task<IActionResult> Statistics(Guid? categoryId, DateTime? dateFrom, DateTime? dateTo)
         {
+            var sqlQuery = @"SELECT *
+                              FROM OrderItems
+                              Inner Join Orders on OrderItems.OrderId=Orders.Id
+                              Inner Join Kits on OrderItems.KitId=Kits.Id
+                              Inner Join Categories on Categories.Id=Kits.CategoryId Where Kits.CategoryId = @CategoryId";
+            var result = SQLHelper.ExcecuteSQL(Configuration.GetConnectionString("SQLConnection"),
+                sqlQuery,
+                new KeyValueSQlParameter("@CategoryId", "F473D3E8-71E6-4A4B-E484-08D80D0F5764"));
+
+
+
+
             var allOrderItems = _context.OrderItems
                 .Include(o => o.Kit)
                 .ThenInclude(o => o.Category).ToList();
