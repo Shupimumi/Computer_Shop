@@ -8,14 +8,14 @@ namespace ComputerShop.Domain.Helper
 {
     public class KeyValueSQlParameter
     {
-        public KeyValueSQlParameter(string key, string value)
+        public KeyValueSQlParameter(string key, Object value)
         {
             Key = key;
             Value = value;
         }
 
         public string Key { get;}
-        public string Value { get;}
+        public Object Value { get;}
     }
 
     public class SQLRaw
@@ -59,6 +59,10 @@ namespace ComputerShop.Domain.Helper
                         result.Add(raw);
                     }
                     return result;
+                }
+                catch (Exception ex)
+                {
+
                 }
                 finally
                 {

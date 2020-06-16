@@ -35,34 +35,51 @@ namespace ComputerShop.Controllers
         // GET: OrderItems
         public async Task<IActionResult> Statistics(Guid? categoryId, DateTime? dateFrom, DateTime? dateTo)
         {
-            var sqlQuery = @"SELECT *
-                              FROM OrderItems
-                              Inner Join Orders on OrderItems.OrderId=Orders.Id
-                              Inner Join Kits on OrderItems.KitId=Kits.Id
-                              Inner Join Categories on Categories.Id=Kits.CategoryId Where Kits.CategoryId = @CategoryId";
+            var sqlQuery = @"SELECT OrderItems.Id, OrderItems.CreatedDate , KitId, OrderId
+                          FROM OrderItems
+                          Inner Join Orders on OrderItems.OrderId=Orders.Id
+                          Inner Join Kits on OrderItems.KitId=Kits.Id
+                          Inner Join Categories on Categories.Id=Kits.CategoryId
+                          Where Kits.CategoryId = IIF(@CategoryId IS NULL, Kits.CategoryId, @CategoryId) 
+                            AND OrderItems.CreatedDate >= IIF(@DateFrom IS NULL, OrderItems.CreatedDate, @DateFrom) 
+                            AND OrderItems.CreatedDate >= IIF(@DateTo IS NULL, OrderItems.CreatedDate, @DateTo)";
+            
+            
             var result = SQLHelper.ExcecuteSQL(Configuration.GetConnectionString("SQLConnection"),
                 sqlQuery,
-                new KeyValueSQlParameter("@CategoryId", "F473D3E8-71E6-4A4B-E484-08D80D0F5764"));
+                new KeyValueSQlParameter("@CategoryId", categoryId.HasValue ? (object)categoryId.Value : DBNull.Value), //"F473D3E8-71E6-4A4B-E484-08D80D0F5764"
+                new KeyValueSQlParameter("@DateFrom",dateFrom.HasValue? (object)dateFrom.Value : DBNull.Value),
+                new KeyValueSQlParameter("@DateTo", dateTo.HasValue? (object)dateFrom.Value : DBNull.Value)
+                );
 
-
-
-
-            var allOrderItems = _context.OrderItems
-                .Include(o => o.Kit)
-                .ThenInclude(o => o.Category).ToList();
-
-            if (categoryId.HasValue)
+            var allOrderItems = ParserHelper.ParseStatistics(result);
+            
+            foreach(var statistic in allOrderItems)
             {
-                allOrderItems = allOrderItems.Where(o => o.Kit.CategoryId == categoryId.Value).ToList();
+                // change to use Storred procedure
+                var order = _context.Orders.FirstOrDefault(o => o.Id == statistic.OrderId);
+                statistic.Order = order;
+                // change to use Storred procedure
+                statistic.Kit = _context.Kits.FirstOrDefault(k => k.Id == statistic.KitId);
             }
-            if (dateFrom.HasValue)
-            {
-                allOrderItems = allOrderItems.Where(o => o.CreatedDate >= dateFrom).ToList();
-            }
-            if (dateTo.HasValue)
-            {
-                allOrderItems = allOrderItems.Where(o => o.CreatedDate >= dateTo).ToList();
-            }
+
+
+            //var allOrderItems = _context.OrderItems
+            //    .Include(o => o.Kit)
+            //    .ThenInclude(o => o.Category).ToList();
+
+            //if (categoryId.HasValue)
+            //{
+            //    allOrderItems = allOrderItems.Where(o => o.Kit.CategoryId == categoryId.Value).ToList();
+            //}
+            //if (dateFrom.HasValue)
+            //{
+            //    allOrderItems = allOrderItems.Where(o => o.CreatedDate >= dateFrom).ToList();
+            //}
+            //if (dateTo.HasValue)
+            //{
+            //    allOrderItems = allOrderItems.Where(o => o.CreatedDate >= dateTo).ToList();
+            //}
 
             ViewData["Categories"] = new SelectList(_context.Categories, "Id", "Name");
             return View(allOrderItems);
